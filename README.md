@@ -20,27 +20,27 @@ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx create --use --driver docker-container
 
 docker buildx build . \
-    --platform linux/arm/v6,linux/arm/v7,linux/amd64,linux/arm64 \
+    --platform linux/amd64,linux/arm64 \
     --build-arg TARGET_ARCH=amd64 \
     --push -t klutchell/balena-buildroot-base:amd64
 
 docker buildx build . \
-    --platform linux/arm/v6,linux/arm/v7,linux/amd64,linux/arm64 \
+    --platform linux/amd64,linux/arm64 \
     --build-arg TARGET_ARCH=aarch64 \
     --push -t klutchell/balena-buildroot-base:aarch64
 
 docker buildx build . \
-    --platform linux/arm/v6,linux/arm/v7,linux/amd64,linux/arm64 \
+    --platform linux/amd64,linux/arm64 \
     --build-arg TARGET_ARCH=armv6hf \
     --push -t klutchell/balena-buildroot-base:armv6hf
 
 docker buildx build . \
-    --platform linux/arm/v6,linux/arm/v7,linux/amd64,linux/arm64 \
+    --platform linux/amd64,linux/arm64 \
     --build-arg TARGET_ARCH=armv7hf \
     --push -t klutchell/balena-buildroot-base:armv7hf
 
 docker buildx build . \
-    --platform linux/arm/v6,linux/arm/v7,linux/amd64,linux/arm64 \
+    --platform linux/amd64,linux/arm64 \
     --build-arg TARGET_ARCH=rpi \
     --push -t klutchell/balena-buildroot-base:rpi
 ```
