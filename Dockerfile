@@ -42,4 +42,4 @@ ARG TARGET_ARCH=aarch64
 
 COPY config.$TARGET_ARCH .config 
 
-RUN make olddefconfig && make toolchain
+RUN make olddefconfig && make
