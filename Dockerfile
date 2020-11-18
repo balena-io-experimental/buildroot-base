@@ -40,4 +40,4 @@ RUN wget -q -O- https://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz | t
 
 COPY config.$TARGET_ARCH .config 
 
-RUN make olddefconfig && make toolchain
+RUN make olddefconfig && make
