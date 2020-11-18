@@ -1,4 +1,4 @@
-# create our own buildroot image based on
+# create a multiarch buildroot image based on
 # https://hub.docker.com/r/buildroot/base
 
 FROM debian:buster as buildroot
@@ -32,11 +32,13 @@ ENV LC_ALL=en_US.UTF-8
 
 ARG BR_VERSION=2020.08.2
 
-ARG TARGET_ARCH=aarch64
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN wget -q -O- https://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz | tar xz --strip 1
+
+FROM buildroot as toolchain
+
+ARG TARGET_ARCH=aarch64
 
 COPY config.$TARGET_ARCH .config 
 

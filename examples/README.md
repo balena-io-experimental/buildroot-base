@@ -1,4 +1,4 @@
-# balena-buildroot-base examples
+# buildroot-base examples
 
 before building examples follow the instructions to build base images
 
