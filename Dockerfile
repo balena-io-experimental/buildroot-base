@@ -40,6 +40,8 @@ FROM base as rootfs
 
 ARG TARGET_ARCH=aarch64
 
-COPY config.$TARGET_ARCH .config 
+COPY config.common config.$TARGET_ARCH ./
+RUN support/kconfig/merge_config.sh -m config.common \
+                                       config.$TARGET_ARCH
 
 RUN make olddefconfig && make
