@@ -6,7 +6,7 @@ ARG CONFIG=mjpeg-streamer
 
 COPY config.$CONFIG ./
 
-RUN cat config.$CONFIG >> .config
+RUN support/kconfig/merge_config.sh -m .config config.$CONFIG
 
 RUN make olddefconfig && make
 
