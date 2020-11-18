@@ -1,7 +1,7 @@
 # create a multiarch buildroot image based on
 # https://hub.docker.com/r/buildroot/base
 
-FROM debian:buster as buildroot
+FROM debian:buster as base
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
@@ -36,7 +36,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN wget -q -O- https://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz | tar xz --strip 1
 
-FROM buildroot as toolchain
+FROM base as rootfs
 
 ARG TARGET_ARCH=aarch64
 
