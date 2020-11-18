@@ -11,11 +11,15 @@ This Dockerfile includes 2 stages:
 
 ## build
 
-```bash
-# build the base image for your host
-docker build . --target base -t buildroot-base
+### build the base image for your host
 
-# build the rootfs images for your host
+```bash
+docker build . --target base -t buildroot-base
+```
+
+### build the rootfs images for your host
+
+```bash
 docker build . --build-arg TARGET_ARCH=amd64    -t buildroot-base:amd64-rootfs
 docker build . --build-arg TARGET_ARCH=aarch64  -t buildroot-base:aarch64-rootfs
 docker build . --build-arg TARGET_ARCH=armv6hf  -t buildroot-base:armv6hf-rootfs
@@ -25,20 +29,28 @@ docker build . --build-arg TARGET_ARCH=rpi      -t buildroot-base:rpi-rootfs
 
 ## push
 
+### setup qemu and buildx for emulated builds
+
 ```bash
-# setup qemu and buildx for emulated builds
 export DOCKER_CLI_EXPERIMENTAL=enabled
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx create --use --driver docker-container
+```
 
-# build and push multiarch base image
+### build and push the multiarch base image
+
+```bash
 docker buildx build . \
     --platform linux/amd64,linux/arm64 \
     --target base \
     --push -t klutchell/buildroot-base:latest
+```
 
-# build and push multiarch rootfs images
-# go get a coffee, these could take hours
+### build and push multiarch rootfs images
+
+Go get a coffee, these could take hours.
+
+```bash
 docker buildx build . \
     --platform linux/amd64,linux/arm64 \
     --build-arg TARGET_ARCH=amd64 \
