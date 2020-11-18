@@ -84,13 +84,13 @@ from a config file.
 
 Before building examples follow the instructions above to build rootfs images.
 
-### mjpeg-streamer
+### mjpg-streamer
 
 ```bash
 docker build ./examples \
-    --build-arg CONFIG=mjpeg-streamer \
+    --build-arg CONFIG=mjpg-streamer \
     --build-arg TARGET_ARCH=aarch64 \
-    -t mjpeg-streamer-example
+    -t mjpg-streamer-example
 ```
 
 ### unbound-dnscrypt
