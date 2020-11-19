@@ -1,0 +1,13 @@
+# Buid musl toolchain w/ kernel 4.19 headers
+BR2_TOOLCHAIN_BUILDROOT_MUSL=y
+BR2_KERNEL_HEADERS_4_19=y
+
+# We don't need init inside a container, this also unselects Busybox
+BR2_INIT_NONE=y
+
+# We don't need a system shell or ifupdown-scripts
+BR2_SYSTEM_BIN_SH_NONE=y
+BR2_PACKAGE_IFUPDOWN_SCRIPTS=n
+
+# Merge /bin, /sbin, /lib, etc. with /usr
+BR2_ROOTFS_MERGED_USR=y
