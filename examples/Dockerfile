@@ -1,6 +1,6 @@
 ARG TARGET_ARCH=aarch64
 
-FROM buildroot-base:$TARGET_ARCH-rootfs as buildroot
+FROM buildroot-rootfs-$TARGET_ARCH:$BR_VERSION as buildroot
 
 ARG CONFIG=mjpg-streamer
 
