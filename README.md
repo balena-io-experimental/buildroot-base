@@ -55,7 +55,14 @@ docker buildx create --use --driver docker-container
 # this part will take all day
 export IMAGE_REPO="docker.io/klutchell"
 export BR_VERSION="2020.08.2"
-./deploy.sh
+export IMAGE_TAG="2020.08.2"
+docker buildx bake --push --set *.platform=linux/amd64,linux/arm64
+
+# this one should be fast as it will use the cache
+export IMAGE_REPO="docker.io/klutchell"
+export BR_VERSION="2020.08.2"
+export IMAGE_TAG="latest"
+docker buildx bake --push --set *.platform=linux/amd64,linux/arm64
 ```
 
 ## examples

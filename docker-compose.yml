@@ -1,0 +1,61 @@
+version: "3.7"
+
+services:
+  base:
+    image: ${IMAGE_REPO}/buildroot-base:${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+      args:
+        BR_VERSION: ${BR_VERSION}
+
+  rootfs-amd64:
+    image: ${IMAGE_REPO}/buildroot-rootfs-amd64:${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rootfs
+      args:
+        BR_VERSION: ${BR_VERSION}
+        TARGET_ARCH: amd64
+
+  rootfs-aarch64:
+    image: ${IMAGE_REPO}/buildroot-rootfs-aarch64:${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rootfs
+      args:
+        BR_VERSION: ${BR_VERSION}
+        TARGET_ARCH: aarch64
+  
+  rootfs-armv7hf:
+    image: ${IMAGE_REPO}/buildroot-rootfs-armv7hf:${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rootfs
+      args:
+        BR_VERSION: ${BR_VERSION}
+        TARGET_ARCH: armv7hf
+    
+  rootfs-armv6hf:
+    image: ${IMAGE_REPO}/buildroot-rootfs-armv6hf:${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rootfs
+      args:
+        BR_VERSION: ${BR_VERSION}
+        TARGET_ARCH: armv6hf
+  
+  rootfs-rpi:
+    image: ${IMAGE_REPO}/buildroot-rootfs-rpi:${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rootfs
+      args:
+        BR_VERSION: ${BR_VERSION}
+        TARGET_ARCH: rpi
