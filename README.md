@@ -51,48 +51,13 @@ docker buildx build . \
 
 ### build and push multiarch rootfs images
 
-Go get a coffee, these could take hours.
+Requires `docker login` to authenticate with your provided `IMAGE_REPO`.
+Go do something else, this will take all day.
 
 ```bash
-docker buildx build . \
-    --platform linux/amd64,linux/arm64 \
-    --build-arg BR_VERSION=2020.08.2 \
-    --build-arg TARGET_ARCH=amd64 \
-    -t klutchell/buildroot-rootfs-amd64:2020.08.2 \
-    -t klutchell/buildroot-rootfs-amd64:latest \
-    --push 
-
-docker buildx build . \
-    --platform linux/amd64,linux/arm64 \
-    --build-arg BR_VERSION=2020.08.2 \
-    --build-arg TARGET_ARCH=aarch64 \
-    -t klutchell/buildroot-rootfs-aarch64:2020.08.2 \
-    -t klutchell/buildroot-rootfs-aarch64:latest \
-    --push 
-
-docker buildx build . \
-    --platform linux/amd64,linux/arm64 \
-    --build-arg BR_VERSION=2020.08.2 \
-    --build-arg TARGET_ARCH=armv6hf \
-    -t klutchell/buildroot-rootfs-armv6hf:2020.08.2 \
-    -t klutchell/buildroot-rootfs-armv6hf:latest \
-    --push 
-
-docker buildx build . \
-    --platform linux/amd64,linux/arm64 \
-    --build-arg BR_VERSION=2020.08.2 \
-    --build-arg TARGET_ARCH=armv7hf \
-    -t klutchell/buildroot-rootfs-armv7hf:2020.08.2 \
-    -t klutchell/buildroot-rootfs-armv7hf:latest \
-    --push 
-
-docker buildx build . \
-    --platform linux/amd64,linux/arm64 \
-    --build-arg BR_VERSION=2020.08.2 \
-    --build-arg TARGET_ARCH=rpi \
-    -t klutchell/buildroot-rootfs-rpi:2020.08.2 \
-    -t klutchell/buildroot-rootfs-rpi:latest \
-    --push 
+export IMAGE_REPO="docker.io/klutchell"
+export BR_VERSION="2020.08.2"
+./deploy.sh
 ```
 
 ## examples
