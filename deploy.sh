@@ -7,6 +7,14 @@ BR_VERSION=${BR_VERSION:-"2020.08.2"}
 HOST_ARCH=${HOST_ARCH:-"linux/amd64,linux/arm64"}
 TARGET_ARCH=${TARGET_ARCH:-"amd64 aarch64 armv7hf armv6hf rpi"}
 
+docker buildx build . \
+    --platform "${HOST_ARCH}" \
+    --build-arg "BR_VERSION=${BR_VERSION}" \
+    --target base \
+    -t ${IMAGE_REPO}/buildroot-base:${BR_VERSION} \
+    -t ${IMAGE_REPO}/buildroot-base:latest \
+    --push
+
 for arch in ${TARGET_ARCH}
 do
     docker buildx build . \

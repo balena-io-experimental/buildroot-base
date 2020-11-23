@@ -1,12 +1,8 @@
-ARG TARGET_ARCH=aarch64
+FROM buildroot-rootfs-aarch64:2020.08.2 as buildroot
 
-FROM buildroot-rootfs-$TARGET_ARCH:$BR_VERSION as buildroot
+COPY config.pkg ./
 
-ARG CONFIG=mjpg-streamer
-
-COPY config.$CONFIG ./
-
-RUN support/kconfig/merge_config.sh -m .config config.$CONFIG
+RUN support/kconfig/merge_config.sh -m .config config.pkg
 
 RUN make olddefconfig && make
 
