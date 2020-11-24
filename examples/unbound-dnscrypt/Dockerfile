@@ -9,9 +9,16 @@ RUN make olddefconfig && make
 # hadolint ignore=DL3002
 USER root
 
-RUN mkdir rootfs && \
-    tar xpf output/images/rootfs.tar -C rootfs
+WORKDIR /rootfs
+
+RUN tar xpf /home/br-user/output/images/rootfs.tar -C /rootfs
 
 FROM scratch
 
-COPY --from=buildroot /home/br-user/rootfs/ /
+COPY --from=buildroot /rootfs/ /
+
+COPY unbound.conf a-records.conf /etc/unbound/
+
+WORKDIR /var/run
+
+CMD ["unbound", "-d"]
