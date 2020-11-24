@@ -12,34 +12,33 @@ This Dockerfile includes 2 stages:
 ## build
 
 ```bash
+# select a buildroot release
+export BR_VERSION=2020.08.2
+
 # build the base image for your host
-docker build . --target base -t buildroot-base
+docker build . --build-arg BR_VERSION \
+    --target base -t buildroot-base
 
 # build the rootfs images for your host
-docker build . \
+docker build . --build-arg BR_VERSION \
     --build-arg TARGET_ARCH=amd64 \
-    --build-arg BR_VERSION=2020.08.2 \
-    -t buildroot-rootfs-amd64
+    -t buildroot-rootfs-amd64:${BR_VERSION}
 
-docker build . \
+docker build . --build-arg BR_VERSION \
     --build-arg TARGET_ARCH=aarch64 \
-    --build-arg BR_VERSION=2020.08.2 \
-    -t buildroot-rootfs-aarch64
+    -t buildroot-rootfs-aarch64:${BR_VERSION}
 
-docker build . \
+docker build . --build-arg BR_VERSION \
     --build-arg TARGET_ARCH=armv7hf \
-    --build-arg BR_VERSION=2020.08.2 \
-    -t buildroot-rootfs-armv7hf
+    -t buildroot-rootfs-armv7hf:${BR_VERSION}
 
-docker build . \
+docker build . --build-arg BR_VERSION \
     --build-arg TARGET_ARCH=armv6hf \
-    --build-arg BR_VERSION=2020.08.2 \
-    -t buildroot-rootfs-armv6hf
+    -t buildroot-rootfs-armv6hf:${BR_VERSION}
 
-docker build . \
+docker build . --build-arg BR_VERSION \
     --build-arg TARGET_ARCH=rpi \
-    --build-arg BR_VERSION=2020.08.2 \
-    -t buildroot-rootfs-rpi
+    -t buildroot-rootfs-rpi:${BR_VERSION}
 ```
 
 ## push
@@ -52,9 +51,12 @@ export DOCKER_CLI_EXPERIMENTAL=enabled
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 docker buildx create --use --driver docker-container
 
-# this part will take all day
+# select an image repo, buildroot release, and tag
 export IMAGE_REPO="docker.io/klutchell"
 export BR_VERSION="2020.08.2"
+export IMAGE_TAG="2020.08.2" # or 'latest'
+
+# this part will take all day
 ./deploy.sh
 ```
 
