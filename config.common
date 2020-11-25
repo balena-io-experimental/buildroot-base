@@ -1,5 +1,6 @@
-# Buid musl toolchain w/ kernel 4.19 headers
+# Buid musl toolchain w/ c++ and kernel 4.19 headers
 BR2_TOOLCHAIN_BUILDROOT_MUSL=y
+BR2_TOOLCHAIN_BUILDROOT_CXX=y
 BR2_KERNEL_HEADERS_4_19=y
 
 # We don't need init inside a container
