@@ -13,6 +13,7 @@ RUN apt-get update && \
         cpio \
         file \
         locales \
+        python3 \
         rsync \
         unzip \
         wget && \
