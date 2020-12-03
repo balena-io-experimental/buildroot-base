@@ -66,8 +66,8 @@ Before building examples follow the instructions above to build rootfs images.
 
 ```bash
 # mjpg-streamer
-docker build ./examples/mjpg-streamer -t mjpg-streamer-example
+docker build ./app/mjpg-streamer -f app/Dockerfile -t mjpg-streamer
 
 # unbound-dnscrypt
-docker build ./examples/unbound-dnscrypt -t unbound-dnscrypt-example
+docker build ./app/unbound-dnscrypt -f app/Dockerfile -t unbound-dnscrypt
 ```
