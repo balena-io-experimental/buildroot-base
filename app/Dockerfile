@@ -1,4 +1,5 @@
 ARG IMAGE=buildroot-rootfs-amd64
+# hadolint ignore=DL3006
 FROM $IMAGE as buildroot
 
 COPY . .
