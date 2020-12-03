@@ -1,7 +1,6 @@
 FROM buildroot-rootfs-aarch64:2020.02.7 as buildroot
 
-COPY config.pkg ./
-
+COPY . .
 RUN support/kconfig/merge_config.sh -m .config config.pkg
 
 RUN make olddefconfig && make
