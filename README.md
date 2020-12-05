@@ -12,36 +12,16 @@ This Dockerfile includes 2 stages:
 ## build
 
 ```bash
-# select a buildroot release
-export BR_VERSION=2020.08.2
-
 # build the base image for your host
-docker build . --build-arg BR_VERSION \
+docker build . --build-arg BR_VERSION="2020.08.2" \
     --target base -t buildroot-base
 
-# build the rootfs images for your host
-docker build . --build-arg BR_VERSION \
-    --build-arg TARGET_ARCH=amd64 \
-    -t buildroot-rootfs-amd64:${BR_VERSION}
-
-docker build . --build-arg BR_VERSION \
-    --build-arg TARGET_ARCH=aarch64 \
-    -t buildroot-rootfs-aarch64:${BR_VERSION}
-
-docker build . --build-arg BR_VERSION \
-    --build-arg TARGET_ARCH=armv7hf \
-    -t buildroot-rootfs-armv7hf:${BR_VERSION}
-
-docker build . --build-arg BR_VERSION \
-    --build-arg TARGET_ARCH=armv6hf \
-    -t buildroot-rootfs-armv6hf:${BR_VERSION}
-
-docker build . --build-arg BR_VERSION \
-    --build-arg TARGET_ARCH=rpi \
-    -t buildroot-rootfs-rpi:${BR_VERSION}
+# build an amd64 rootfs image for your host
+docker build . --build-arg BR_VERSION="2020.08.2" \
+    --build-arg TARGET_ARCH=amd64 -t buildroot-rootfs-amd64
 ```
 
-## push
+## deploy
 
 Requires `docker login` to authenticate with your provided `IMAGE_REPO`.
 
@@ -54,10 +34,13 @@ docker buildx create --use --driver docker-container
 # select an image repo, buildroot release, and tag
 export IMAGE_REPO="docker.io/klutchell"
 export BR_VERSION="2020.08.2"
-export IMAGE_TAG="2020.08.2" # or 'latest'
+export IMAGE_TAGS="2020.08.2 latest"
 
-# this part will take all day
+# this part will take all day to build & cache multiarch images
 ./deploy.sh
+
+# then push to docker repo
+./deploy.sh --push
 ```
 
 ## examples
