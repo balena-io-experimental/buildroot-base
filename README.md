@@ -13,11 +13,11 @@ This Dockerfile includes 2 stages:
 
 ```bash
 # build the base image for your host
-docker build . --build-arg BR_VERSION="2020.08.2" \
+docker build . --build-arg BR_VERSION="2020.11" \
     --target base -t buildroot-base
 
 # build an amd64 rootfs image for your host
-docker build . --build-arg BR_VERSION="2020.08.2" \
+docker build . --build-arg BR_VERSION="2020.11" \
     --build-arg TARGET_ARCH=amd64 -t buildroot-rootfs-amd64
 ```
 
@@ -33,8 +33,8 @@ docker buildx create --use --driver docker-container
 
 # select an image repo, buildroot release, and tag
 export IMAGE_REPO="docker.io/klutchell"
-export BR_VERSION="2020.08.2"
-export IMAGE_TAGS="2020.08.2 latest"
+export BR_VERSION="2020.11"
+export IMAGE_TAGS="2020.11 latest"
 
 # this part will take all day to build & cache multiarch images
 ./deploy.sh
