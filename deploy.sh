@@ -3,7 +3,7 @@
 set -e
 
 [ -n "${IMAGE_REPO}" ] || IMAGE_REPO="docker.io/klutchell"
-[ -n "${BR_VERSION}" ] || BR_VERSION="2020.08.2"
+[ -n "${BR_VERSION}" ] || BR_VERSION="2020.11"
 [ -n "${IMAGE_TAGS}" ] || IMAGE_TAGS="${BR_VERSION}"
 
 image_tags() {
