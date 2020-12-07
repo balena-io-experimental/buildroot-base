@@ -39,13 +39,13 @@ RUN wget -q -O- https://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz | t
 
 FROM base as rootfs
 
-ARG TARGET_ARCH=aarch64
+ARG IMAGE_ARCH=aarch64
 ARG LIBC=musl
 
 COPY config/common.cfg \
-     config/arch/$TARGET_ARCH.cfg \
+     config/arch/$IMAGE_ARCH.cfg \
      config/libc/$LIBC.cfg ./
 
-RUN support/kconfig/merge_config.sh -m common.cfg $TARGET_ARCH.cfg $LIBC.cfg
+RUN support/kconfig/merge_config.sh -m common.cfg $IMAGE_ARCH.cfg $LIBC.cfg
 
 RUN make olddefconfig && make
