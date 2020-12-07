@@ -1,7 +1,7 @@
 # create a multiarch buildroot image based on
 # https://hub.docker.com/r/buildroot/base
 
-FROM debian:buster as base
+FROM debian:bullseye as base
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
