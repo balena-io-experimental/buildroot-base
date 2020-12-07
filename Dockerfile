@@ -48,4 +48,5 @@ COPY config/common.cfg \
 
 RUN support/kconfig/merge_config.sh -m common.cfg $TARGET_ARCH.cfg $LIBC.cfg
 
-RUN make olddefconfig && make
+RUN make olddefconfig && make source
+RUN make
