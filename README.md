@@ -18,7 +18,7 @@ docker build . --build-arg BR_VERSION="2020.11" \
 
 # build an amd64 rootfs image for your host
 docker build . --build-arg BR_VERSION="2020.11" \
-    --build-arg TARGET_ARCH=amd64 -t buildroot-rootfs-amd64
+    --build-arg IMAGE_ARCH=amd64 -t buildroot-rootfs-amd64
 ```
 
 ## deploy
