@@ -20,25 +20,28 @@ docker buildx build . --platform "linux/amd64,linux/arm64,linux/arm/v7,linux/arm
 
 # shellcheck disable=SC2046
 docker buildx build . --platform "linux/amd64" \
-    --build-arg BR_VERSION --build-arg "TARGET_ARCH=amd64" \
+    --build-arg BR_VERSION --build-arg "ROOTFS_ARCH=amd64" \
     $(image_tags ${IMAGE_REPO}/buildroot-rootfs-amd64) "$@"
 
 # shellcheck disable=SC2046
 docker buildx build . --platform "linux/amd64,linux/arm64" \
-    --build-arg BR_VERSION --build-arg "TARGET_ARCH=aarch64" \
+    --build-arg BR_VERSION --build-arg "ROOTFS_ARCH=aarch64" \
+    $(image_tags ${IMAGE_REPO}/buildroot-rootfs-arm64) \
     $(image_tags ${IMAGE_REPO}/buildroot-rootfs-aarch64) "$@"
 
 # shellcheck disable=SC2046
 docker buildx build . --platform "linux/amd64,linux/arm64" \
-    --build-arg BR_VERSION --build-arg "TARGET_ARCH=armv7hf" \
+    --build-arg BR_VERSION --build-arg "ROOTFS_ARCH=armv7hf" \
+    $(image_tags ${IMAGE_REPO}/buildroot-rootfs-arm32v7) \
     $(image_tags ${IMAGE_REPO}/buildroot-rootfs-armv7hf) "$@"
 
 # shellcheck disable=SC2046
 docker buildx build . --platform "linux/amd64,linux/arm64" \
-    --build-arg BR_VERSION --build-arg "TARGET_ARCH=armv6hf" \
+    --build-arg BR_VERSION --build-arg "ROOTFS_ARCH=armv6hf" \
     $(image_tags ${IMAGE_REPO}/buildroot-rootfs-rpi) \
+    $(image_tags ${IMAGE_REPO}/buildroot-rootfs-arm32v6) \
     $(image_tags ${IMAGE_REPO}/buildroot-rootfs-armv6hf) "$@"
 
 # docker buildx build . --platform "linux/amd64,linux/arm64" \
-#     --build-arg BR_VERSION --build-arg "TARGET_ARCH=rpi" \
+#     --build-arg BR_VERSION --build-arg "ROOTFS_ARCH=rpi" \
 #     -t ${IMAGE_REPO}/buildroot-rootfs-rpi:${IMAGE_TAG} "$@"
