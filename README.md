@@ -34,13 +34,10 @@ docker buildx create --use --driver docker-container
 # select an image repo, buildroot release, and tag
 export IMAGE_REPO="docker.io/klutchell"
 export BR_VERSION="2020.11"
-export IMAGE_TAGS="2020.11 latest"
+export IMAGE_TAG="2020.11"
 
-# this part will take all day to build & cache multiarch images
-./deploy.sh
-
-# then push to docker repo
-./deploy.sh --push
+# this part will take all day to build & push multiarch images
+docker buildx bake --push
 ```
 
 ## examples
