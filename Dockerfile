@@ -35,7 +35,9 @@ ARG BR_VERSION=2020.11
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+COPY patches patches
 RUN wget -q -O- https://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz | tar xz --strip 1
+RUN shopt -s nullglob; for p in patches/$BR_VERSION/*.patch; do patch -p1 -i $p; done
 
 FROM base as rootfs
 
