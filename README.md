@@ -12,6 +12,9 @@ This Dockerfile includes 2 stages:
 ## build
 
 ```bash
+# enable build mounts
+export DOCKER_BUILDKIT=1
+
 # build the base image for your host
 docker build . --build-arg BR_VERSION="2020.11" \
     --target base -t buildroot-base
@@ -26,6 +29,9 @@ docker build . --build-arg BR_VERSION="2020.11" \
 Requires `docker login` to authenticate with your provided `IMAGE_REPO`.
 
 ```bash
+# enable build mounts
+export DOCKER_BUILDKIT=1
+
 # enable qemu for multiarch builds
 export DOCKER_CLI_EXPERIMENTAL=enabled
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
@@ -46,8 +52,8 @@ Before building examples follow the instructions above to build rootfs images.
 
 ```bash
 # mjpg-streamer
-docker build ./app/mjpg-streamer -f app/Dockerfile -t mjpg-streamer
+DOCKER_BUILDKIT=1 docker build ./app/mjpg-streamer -f app/Dockerfile -t mjpg-streamer
 
 # unbound-dnscrypt
-docker build ./app/unbound-dnscrypt -f app/Dockerfile -t unbound-dnscrypt
+DOCKER_BUILDKIT=1 docker build ./app/unbound-dnscrypt -f app/Dockerfile -t unbound-dnscrypt
 ```

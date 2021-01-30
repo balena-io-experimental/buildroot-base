@@ -1,3 +1,5 @@
+#syntax=docker/dockerfile:1.2
+
 # create a multiarch buildroot image based on
 # https://hub.docker.com/r/buildroot/base
 
@@ -48,5 +50,6 @@ COPY config/common.cfg \
 
 RUN support/kconfig/merge_config.sh -m common.cfg $ROOTFS_ARCH.cfg $LIBC.cfg
 
-RUN make olddefconfig && make source
-RUN make
+RUN --mount=type=cache,target=/cache,uid=1000,gid=1000,sharing=private \
+    make olddefconfig \
+    && make
