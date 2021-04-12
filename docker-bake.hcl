@@ -22,7 +22,7 @@ group "default" {
 
 target "base" {
     target = "base"
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/arm/v6"]
     tags = ["${IMAGE_REPO}/buildroot-base:${IMAGE_TAG}"]
     args = {
         "BR_VERSION": "${BR_VERSION}"
@@ -31,7 +31,7 @@ target "base" {
 
 target "rootfs-amd64" {
     target = "rootfs"
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64"]
     tags = ["${IMAGE_REPO}/buildroot-rootfs-amd64:${IMAGE_TAG}"]
     args = {
         "BR_VERSION": "${BR_VERSION}"
@@ -54,7 +54,7 @@ target "rootfs-aarch64" {
 
 target "rootfs-armv7hf" {
     target = "rootfs"
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64", "linux/arm/v7"]
     tags = [
         "${IMAGE_REPO}/buildroot-rootfs-arm32v7:${IMAGE_TAG}",
         "${IMAGE_REPO}/buildroot-rootfs-armv7hf:${IMAGE_TAG}"
@@ -67,7 +67,7 @@ target "rootfs-armv7hf" {
 
 target "rootfs-armv6hf" {
     target = "rootfs"
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64"]
     tags = [
         "${IMAGE_REPO}/buildroot-rootfs-arm32v6:${IMAGE_TAG}",
         "${IMAGE_REPO}/buildroot-rootfs-armv6hf:${IMAGE_TAG}",
@@ -81,7 +81,7 @@ target "rootfs-armv6hf" {
 
 target "rootfs-rpi" {
     target = "rootfs"
-    platforms = ["linux/amd64", "linux/arm64"]
+    platforms = ["linux/amd64"]
     tags = ["${IMAGE_REPO}/buildroot-rootfs-rpi:${IMAGE_TAG}"]
     args = {
         "BR_VERSION": "${BR_VERSION}"
