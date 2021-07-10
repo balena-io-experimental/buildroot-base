@@ -1,0 +1,8 @@
+BR2_PACKAGE_FFMPEG=y
+BR2_PACKAGE_FFMPEG_GPL=y
+BR2_PACKAGE_FFMPEG_NONFREE=y
+BR2_PACKAGE_LAME=y # encode audio as mp3
+BR2_PACKAGE_LIBV4L=y # used by libavdevice to access v4l2 devices
+BR2_PACKAGE_X264=y # useful if you want to re-encode at a lower bitrate
+BR2_SYSTEM_BIN_SH_BUSYBOX=y # needed for args
+
